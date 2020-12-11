@@ -38,6 +38,10 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        manifestPlaceholders = [
+                FACEBOOK_APP_ID : "your facebook app id",
+        ]
     }
 
     buildTypes {

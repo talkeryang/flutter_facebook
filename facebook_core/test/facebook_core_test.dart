@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:facebook_core/facebook_core.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('facebook_core');
@@ -8,16 +7,10 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
-    });
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {});
   });
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await FacebookCore.platformVersion, '42');
   });
 }

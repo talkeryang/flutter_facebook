@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface FacebookCorePlugin : NSObject<FlutterPlugin>
+@interface FacebookCorePlugin : NSObject <FlutterPlugin>
 @end
