@@ -1,0 +1,31 @@
+PODS:
+  - facebook_applinks (0.0.1):
+    - Flutter
+  - facebook_core (0.0.1):
+    - facebook_core/vendor (= 0.0.1)
+    - Flutter
+  - facebook_core/vendor (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - facebook_applinks (from `.symlinks/plugins/facebook_applinks/ios`)
+  - facebook_core (from `.symlinks/plugins/facebook_core/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  facebook_applinks:
+    :path: ".symlinks/plugins/facebook_applinks/ios"
+  facebook_core:
+    :path: ".symlinks/plugins/facebook_core/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  facebook_applinks: cf55c9d727ff912a1a8feeae646568d8167df944
+  facebook_core: 381348116797cf77f9fe3cf363a1dd432dbccd70
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.0

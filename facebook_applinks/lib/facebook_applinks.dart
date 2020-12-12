@@ -1,14 +1,3 @@
+library facebook_applinks;
 
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-
-class FacebookApplinks {
-  static const MethodChannel _channel =
-      const MethodChannel('facebook_applinks');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-}
+export 'src/facebook_applinks.dart';

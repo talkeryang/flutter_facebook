@@ -1,8 +1,8 @@
 name: facebook_applinks
 description: A new flutter plugin project.
 version: 0.0.1
-author:
-homepage:
+# author: v7lin <v7lin@qq.com>
+homepage: https://github.com/v7lin/flutter_facebook
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -12,9 +12,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+  facebook_core: ^0.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  facebook_core:
+    path: ../facebook_core
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
