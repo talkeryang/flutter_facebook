@@ -130,7 +130,7 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
             @Override
             public void onError(FacebookException error) {
                 if (result != null) {
-                    result.error("ERROR", error.getMessage(), null);
+                    result.error("FAILED", error.getMessage(), null);
                 }
                 unregisterCallback();
             }

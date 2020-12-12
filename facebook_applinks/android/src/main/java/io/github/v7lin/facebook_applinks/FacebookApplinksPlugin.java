@@ -85,16 +85,29 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
       AppLinkData.fetchDeferredAppLinkData(flutterPluginBinding.getApplicationContext(), new AppLinkData.CompletionHandler() {
         @Override
         public void onDeferredAppLinkDataFetched(@Nullable AppLinkData appLinkData) {
-          final Uri targetUrl = appLinkData != null ? appLinkData.getTargetUri() : null;
-          if (mainHandler != null) {
-            mainHandler.post(new Runnable() {
-              @Override
-              public void run() {
-                if (result != null) {
-                  result.success(targetUrl != null ? targetUrl.toString() : null);
+          if (appLinkData != null) {
+            final Uri targetUrl = appLinkData.getTargetUri();
+            if (mainHandler != null) {
+              mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                  if (result != null) {
+                    result.success(targetUrl != null ? targetUrl.toString() : null);
+                  }
                 }
-              }
-            });
+              });
+            }
+          } else {
+            if (mainHandler != null) {
+              mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                  if (result != null) {
+                    result.error("FAILED", "AppLink is null", null);
+                  }
+                }
+              });
+            }
           }
         }
       });
