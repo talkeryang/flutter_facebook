@@ -1,6 +1,5 @@
 package io.github.v7lin.facebook_applinks;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
