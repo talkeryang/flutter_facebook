@@ -1,3 +1,3 @@
 library facebook_core;
 
-export 'src/facebook_core.dart';
+export 'src/facebook_sdk.dart';

@@ -5,7 +5,7 @@
 Pod::Spec.new do |s|
   s.name             = 'facebook_core'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'Flutter plugin for Facebook Core.'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
@@ -19,6 +19,7 @@ A new flutter plugin project.
   s.platform = :ios, '8.0'
 
   s.subspec 'vendor' do |sp|
+    
   end
 
   # Flutter.framework does not contain a i386 slice.

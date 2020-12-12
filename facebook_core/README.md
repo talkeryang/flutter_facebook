@@ -1,6 +1,44 @@
 # facebook_core
 
-A new flutter plugin project.
+Flutter plugin for Facebook Core.
+
+## Android
+
+```groovy
+// android/app/build.gradle
+android {
+    defaultConfig {
+        manifestPlaceholders = [
+                FACEBOOK_APP_ID : "your facebook app id",
+        ]
+    }
+}
+```
+
+## iOS
+
+```plist
+
+```
+
+## Flutter
+
+```yaml
+# pubspec.yaml
+dependencies:
+  facebook_core:
+    git:
+      url: https://github.com/rxreader/flutter_facebook.git
+      path: facebook_core
+```
+
+* release
+
+```yaml
+# pubspec.yaml
+dependencies:
+  facebook_core: ^${latestVersion}
+```
 
 ## Getting Started
 

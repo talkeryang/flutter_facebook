@@ -1,8 +1,9 @@
+import 'package:facebook_core/facebook_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('v7lin.github.io/facebook_core');
+  const MethodChannel channel = FacebookSdk.channel;
 
   TestWidgetsFlutterBinding.ensureInitialized();
 

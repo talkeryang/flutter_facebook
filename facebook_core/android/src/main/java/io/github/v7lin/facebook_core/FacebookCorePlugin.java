@@ -2,6 +2,8 @@ package io.github.v7lin.facebook_core;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.FacebookSdk;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -36,6 +38,10 @@ public class FacebookCorePlugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        result.notImplemented();
+        if (call.method.equals("getApplicationId")) {
+            result.success(FacebookSdk.getApplicationId());
+        } else {
+            result.notImplemented();
+        }
     }
 }
