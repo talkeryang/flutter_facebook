@@ -18,19 +18,24 @@ public class FacebookCorePlugin implements FlutterPlugin, MethodCallHandler {
     /// when the Flutter Engine is detached from the Activity
     private MethodChannel channel;
 
-    @Override
-    public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "v7lin.github.io/facebook_core");
-        channel.setMethodCallHandler(this);
-    }
+    // --- FlutterPlugin
 
     @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        result.notImplemented();
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "v7lin.github.io/facebook_core");
+        channel.setMethodCallHandler(this);
     }
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
+        channel = null;
+    }
+
+    // --- MethodCallHandler
+
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        result.notImplemented();
     }
 }

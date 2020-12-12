@@ -8,9 +8,7 @@ import 'package:flutter/services.dart';
 class FacebookLogin {
   FacebookLogin._();
 
-  factory FacebookLogin.shared() {
-    return _instance;
-  }
+  static FacebookLogin get instance => _instance;
 
   static final FacebookLogin _instance = FacebookLogin._();
 

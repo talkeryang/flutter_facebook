@@ -43,8 +43,8 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
     // --- FlutterPlugin
 
     @Override
-    public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "v7lin.github.io/facebook_login");
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "v7lin.github.io/facebook_login");
         channel.setMethodCallHandler(this);
     }
 
