@@ -1,14 +1,6 @@
+library facebook_login;
 
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-
-class FacebookLogin {
-  static const MethodChannel _channel =
-      const MethodChannel('facebook_login');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-}
+export 'src/exception/facebook_login_exception.dart';
+export 'src/facebook_login.dart';
+export 'src/login_behavior.dart';
+export 'src/model/access_token.dart';
