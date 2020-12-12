@@ -49,5 +49,4 @@ android {
 
 dependencies {
     vendorImplementation 'com.facebook.android:facebook-core:8.1.0'
-    vendorImplementation 'com.facebook.android:facebook-common:8.1.0'
 }
