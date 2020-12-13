@@ -18,7 +18,9 @@ A new flutter plugin project.
   s.dependency 'Flutter'
   s.platform = :ios, '8.0'
 
+  s.static_framework = true
   s.subspec 'vendor' do |sp|
+    sp.dependency 'FBSDKCoreKit', '~> 8.1.0'
   end
 
   # Flutter.framework does not contain a i386 slice.

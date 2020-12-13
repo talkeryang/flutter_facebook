@@ -35,7 +35,7 @@ FACEBOOK_DISPLAY_NAME=your facebook app display name
 ```
 
 ```xml
-    <!-- Info.plist -->
+	<!-- Info.plist -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

@@ -85,7 +85,7 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
         if (call.method.equals("login")) {
             login(call, result);
         } else if (call.method.equals("logout")) {
-            logout(result);
+            logout(call, result);
         } else {
             result.notImplemented();
         }
@@ -161,7 +161,7 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
         return LoginBehavior.NATIVE_WITH_FALLBACK;
     }
 
-    private void logout(@NonNull Result result) {
+    private void logout(@NonNull MethodCall call, @NonNull final Result result) {
         loginManager.logOut();
         result.success(null);
     }
