@@ -39,28 +39,30 @@
     NSArray<NSString *> *permissions = call.arguments[@"permissions"];
     NSString *loginBehavior = call.arguments[@"login_behavior"];
     UIViewController *viewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [loginManager logInWithPermissions:permissions fromViewController:viewController handler:^(FBSDKLoginManagerLoginResult * _Nullable loginResult, NSError * _Nullable error) {
-        if (error == nil) {
-            if (loginResult.isCancelled) {
-                result([FlutterError errorWithCode:@"CANCELLED" message:@"User has cancelled login with facebook" details:nil]);
-            } else {
-                FBSDKAccessToken *accessToken = loginResult.token;
-                result(@{
-                    @"token": accessToken.tokenString,
-                    @"userId": accessToken.userID,
-                    @"expires": [NSNumber numberWithLongLong:accessToken.expirationDate.timeIntervalSince1970 * 1000.0],
-                    @"applicationId": accessToken.appID,
-                    @"lastRefresh": [NSNumber numberWithLongLong:accessToken.refreshDate.timeIntervalSince1970 * 1000.0],
-                    @"graphDomain": accessToken.graphDomain,
-                    @"isExpired": [NSNumber numberWithBool:accessToken.isExpired],
-                    @"grantedPermissions": [accessToken.permissions allObjects],
-                    @"declinedPermissions": [accessToken.declinedPermissions allObjects],
-                       });
-            }
-        } else {
-            result([FlutterError errorWithCode:@"FAILED" message:error.localizedDescription details:nil]);
-        }
-    }];
+    [loginManager logInWithPermissions:permissions
+                    fromViewController:viewController
+                               handler:^(FBSDKLoginManagerLoginResult *_Nullable loginResult, NSError *_Nullable error) {
+                                   if (error == nil) {
+                                       if (loginResult.isCancelled) {
+                                           result([FlutterError errorWithCode:@"CANCELLED" message:@"User has cancelled login with facebook" details:nil]);
+                                       } else {
+                                           FBSDKAccessToken *accessToken = loginResult.token;
+                                           result(@{
+                                               @"token" : accessToken.tokenString,
+                                               @"userId" : accessToken.userID,
+                                               @"expires" : [NSNumber numberWithLongLong:accessToken.expirationDate.timeIntervalSince1970 * 1000.0],
+                                               @"applicationId" : accessToken.appID,
+                                               @"lastRefresh" : [NSNumber numberWithLongLong:accessToken.refreshDate.timeIntervalSince1970 * 1000.0],
+                                               @"graphDomain" : accessToken.graphDomain,
+                                               @"isExpired" : [NSNumber numberWithBool:accessToken.isExpired],
+                                               @"grantedPermissions" : [accessToken.permissions allObjects],
+                                               @"declinedPermissions" : [accessToken.declinedPermissions allObjects],
+                                           });
+                                       }
+                                   } else {
+                                       result([FlutterError errorWithCode:@"FAILED" message:error.localizedDescription details:nil]);
+                                   }
+                               }];
 }
 
 - (void)logout:(FlutterMethodCall *)call result:(FlutterResult)result {
