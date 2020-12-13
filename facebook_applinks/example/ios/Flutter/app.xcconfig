@@ -1,0 +1,10 @@
+//
+//  app.xcconfig
+//  Runner
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+FACEBOOK_APP_ID=your facebook app id
+FACEBOOK_DISPLAY_NAME=your facebook app display name
