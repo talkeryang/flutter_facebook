@@ -1,6 +1,23 @@
 # facebook_login
 
-A new flutter plugin project.
+Flutter plugin for Facebook Login.
+
+## Flutter
+
+```yaml
+# pubspec.yaml
+dependencies:
+  facebook_login:
+    git:
+      url: https://github.com/rxreader/flutter_facebook.git
+      path: facebook_login
+```
+
+```yaml
+# pubspec.yaml
+dependencies:
+  facebook_login: ^${latestVersion}
+```
 
 ## Getting Started
 

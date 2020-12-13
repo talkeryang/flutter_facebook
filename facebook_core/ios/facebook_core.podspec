@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version          = '0.0.1'
   s.summary          = 'Flutter plugin for Facebook Core.'
   s.description      = <<-DESC
-A new flutter plugin project.
+Flutter plugin for Facebook Core.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }

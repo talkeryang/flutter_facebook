@@ -84,8 +84,6 @@ dependencies:
       path: facebook_core
 ```
 
-* release
-
 ```yaml
 # pubspec.yaml
 dependencies:
