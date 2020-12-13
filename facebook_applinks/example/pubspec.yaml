@@ -28,6 +28,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  pedantic:
+
 dependency_overrides:
   facebook_core:
     path: ../../facebook_core

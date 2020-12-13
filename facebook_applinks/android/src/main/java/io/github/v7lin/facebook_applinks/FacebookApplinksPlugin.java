@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 
 import com.facebook.applinks.AppLinkData;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import bolts.AppLinks;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -84,15 +87,17 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
     } else if (call.method.equals("fetchDeferredAppLink")) {
       AppLinkData.fetchDeferredAppLinkData(flutterPluginBinding.getApplicationContext(), new AppLinkData.CompletionHandler() {
         @Override
-        public void onDeferredAppLinkDataFetched(@Nullable AppLinkData appLinkData) {
+        public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
           if (appLinkData != null) {
-            final Uri targetUrl = appLinkData.getTargetUri();
             if (mainHandler != null) {
               mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
                   if (result != null) {
-                    result.success(targetUrl != null ? targetUrl.toString() : null);
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
+                    map.put("promo_code", appLinkData.getPromotionCode());
+                    result.success(map);
                   }
                 }
               });

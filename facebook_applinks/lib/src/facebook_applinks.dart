@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:facebook_applinks/src/model/app_link.dart';
 import 'package:flutter/services.dart';
 
 class FacebookApplinks {
@@ -31,7 +32,8 @@ class FacebookApplinks {
     return _channel.invokeMethod<String>('getInitialAppLink');
   }
 
-  Future<String> fetchDeferredAppLink() {
-    return _channel.invokeMethod<String>('fetchDeferredAppLink');
+  Future<DeferredAppLink> fetchDeferredAppLink() async {
+    Map<String, dynamic> result = await _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
+    return DeferredAppLink.fromJson(result);
   }
 }
