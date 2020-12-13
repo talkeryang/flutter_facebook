@@ -21,6 +21,7 @@ android {
 //  app.xcconfig
 
 FACEBOOK_APP_ID=your facebook app id
+FACEBOOK_DISPLAY_NAME=your facebook app display name
 ```
 
 ```
@@ -51,7 +52,7 @@ FACEBOOK_APP_ID=your facebook app id
 	<key>FacebookAppID</key>
 	<string>$(FACEBOOK_APP_ID)</string>
 	<key>FacebookDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
 ```
 
 ## Flutter

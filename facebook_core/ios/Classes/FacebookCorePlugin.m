@@ -8,13 +8,12 @@
               binaryMessenger:[registrar messenger]];
     FacebookCorePlugin *instance = [[FacebookCorePlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
-    
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([@"getApplicationId" isEqualToString:call.method]) {
-        
+//        result([[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"] ?: [NSNull null]);
+        result(FBSDKSettings.appID);
     } else {
         result(FlutterMethodNotImplemented);
     }

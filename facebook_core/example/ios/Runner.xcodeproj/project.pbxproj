@@ -38,7 +38,7 @@
 		464203BC3F76265EB818074E /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		6EDB3D7D2585CCEA00CFE45F /* app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = app.xcconfig; path = Flutter/app.xcconfig; sourceTree = "<group>"; };
 		6EDB3D7F2585CD2900CFE45F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6EDB3D852585CF4400CFE45F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6EDB3DB82585D62F00CFE45F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6EDB3D7F2585CD2900CFE45F /* Base */,
-				6EDB3D852585CF4400CFE45F /* en */,
+				6EDB3DB82585D62F00CFE45F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
