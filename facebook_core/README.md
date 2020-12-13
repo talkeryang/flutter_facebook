@@ -17,8 +17,41 @@ android {
 
 ## iOS
 
-```plist
+```
+//  app.xcconfig
 
+FACEBOOK_APP_ID=your facebook app id
+```
+
+```
+//  Debug.xcconfig
+#include "app.xcconfig"
+```
+
+```
+//  Release.xcconfig
+#include "app.xcconfig"
+```
+
+```xml
+    <!-- Info.plist -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb$(FACEBOOK_APP_ID)</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>$(FACEBOOK_APP_ID)</string>
+	<key>FacebookDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
 ```
 
 ## Flutter

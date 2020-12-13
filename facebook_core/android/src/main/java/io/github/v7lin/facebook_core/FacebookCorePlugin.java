@@ -38,7 +38,7 @@ public class FacebookCorePlugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        if (call.method.equals("getApplicationId")) {
+        if ("getApplicationId".equals(call.method)) {
             result.success(FacebookSdk.getApplicationId());
         } else {
             result.notImplemented();

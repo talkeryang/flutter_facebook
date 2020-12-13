@@ -1,4 +1,5 @@
 #import "FacebookCorePlugin.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation FacebookCorePlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
@@ -7,10 +8,16 @@
               binaryMessenger:[registrar messenger]];
     FacebookCorePlugin *instance = [[FacebookCorePlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
+    
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
-    result(FlutterMethodNotImplemented);
+    if ([@"getApplicationId" isEqualToString:call.method]) {
+        
+    } else {
+        result(FlutterMethodNotImplemented);
+    }
 }
 
 @end

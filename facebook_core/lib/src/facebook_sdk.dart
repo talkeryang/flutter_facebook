@@ -4,10 +4,14 @@ import 'package:flutter/services.dart';
 class FacebookSdk {
   FacebookSdk._();
 
-  @visibleForTesting
-  static const MethodChannel channel = MethodChannel('v7lin.github.io/facebook_core');
+  static FacebookSdk get instance => _instance;
 
-  static Future<String> getApplicationId() {
+  static final FacebookSdk _instance = FacebookSdk._();
+
+  @visibleForTesting
+  final MethodChannel channel = const MethodChannel('v7lin.github.io/facebook_core');
+
+  Future<String> getApplicationId() {
     return channel.invokeMethod<String>('getApplicationId');
   }
 }
