@@ -13,6 +13,7 @@ Flutter plugin for Facebook App Links.
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="facebook_applinks" />
                 <data android:scheme="${FACEBOOK_APP_LINKS}" />
             </intent-filter>
         </activity>
@@ -46,7 +47,7 @@ FACEBOOK_APP_LINKS=your facebook app link scheme
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>facebook_app_links</string>
+			<string>facebook_applinks</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>$(FACEBOOK_APP_LINKS)</string>

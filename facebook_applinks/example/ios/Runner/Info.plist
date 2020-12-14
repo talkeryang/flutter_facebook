@@ -34,7 +34,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>facebook_app_links</string>
+			<string>facebook_applinks</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>$(FACEBOOK_APP_LINKS)</string>

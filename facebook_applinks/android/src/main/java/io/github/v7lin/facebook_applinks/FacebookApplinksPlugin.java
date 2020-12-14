@@ -1,6 +1,9 @@
 package io.github.v7lin.facebook_applinks;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -82,7 +85,13 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
     if (call.method.equals("getInitialAppLink")) {
-      Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), activityPluginBinding.getActivity().getIntent());
+      Intent intent = activityPluginBinding.getActivity().getIntent();
+
+      Uri targetUrl = null;
+      ResolveInfo resolveInfo = flutterPluginBinding.getApplicationContext().getPackageManager().resolveActivity(intent, 0);
+      if (resolveInfo != null && resolveInfo.filter.hasCategory("facebook_applinks")) {
+        targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
+      }
       result.success(targetUrl != null ? targetUrl.toString() : null);
     } else if (call.method.equals("fetchDeferredAppLink")) {
       AppLinkData.fetchDeferredAppLinkData(flutterPluginBinding.getApplicationContext(), new AppLinkData.CompletionHandler() {
@@ -125,11 +134,13 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
 
   @Override
   public boolean onNewIntent(Intent intent) {
-    Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
-    if (targetUrl != null) {
+    ResolveInfo resolveInfo = flutterPluginBinding.getApplicationContext().getPackageManager().resolveActivity(intent, 0);
+    if (resolveInfo != null && resolveInfo.filter.hasCategory("facebook_applinks")) {
+      Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
       if (channel != null) {
-        channel.invokeMethod("handleAppLink", targetUrl.toString());
+        channel.invokeMethod("handleAppLink", targetUrl != null ? targetUrl.toString() : null);
       }
+      return true;
     }
     return false;
   }
