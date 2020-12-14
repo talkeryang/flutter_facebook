@@ -1,12 +1,13 @@
 package io.github.v7lin.facebook_applinks;
 
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ResolveInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -88,8 +89,8 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
       Intent intent = activityPluginBinding.getActivity().getIntent();
 
       Uri targetUrl = null;
-      ResolveInfo resolveInfo = flutterPluginBinding.getApplicationContext().getPackageManager().resolveActivity(intent, 0);
-      if (resolveInfo != null && resolveInfo.filter.hasCategory("facebook_applinks")) {
+      Uri url = intent.getData();
+      if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
         targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
       }
       result.success(targetUrl != null ? targetUrl.toString() : null);
@@ -102,12 +103,10 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
               mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                  if (result != null) {
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
-                    map.put("promo_code", appLinkData.getPromotionCode());
-                    result.success(map);
-                  }
+                  Map<String, Object> map = new HashMap<>();
+                  map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
+                  map.put("promo_code", appLinkData.getPromotionCode());
+                  result.success(map);
                 }
               });
             }
@@ -116,9 +115,7 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
               mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                  if (result != null) {
-                    result.error("FAILED", "AppLink is null", null);
-                  }
+                  result.error("FAILED", "AppLink is null", null);
                 }
               });
             }
@@ -130,12 +127,23 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
     }
   }
 
+  private String fetchUrlScheme() {
+    try {
+      Context applicationContext = flutterPluginBinding.getApplicationContext();
+      ApplicationInfo appInfo = applicationContext.getPackageManager().getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA);
+      return appInfo.metaData != null ? appInfo.metaData.getString("facebook_applinks") : null;
+    } catch (PackageManager.NameNotFoundException e) {
+      // ignore
+    }
+    return null;
+  }
+
   // --- NewIntentListener
 
   @Override
   public boolean onNewIntent(Intent intent) {
-    ResolveInfo resolveInfo = flutterPluginBinding.getApplicationContext().getPackageManager().resolveActivity(intent, 0);
-    if (resolveInfo != null && resolveInfo.filter.hasCategory("facebook_applinks")) {
+    Uri url = intent.getData();
+    if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
       Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
       if (channel != null) {
         channel.invokeMethod("handleAppLink", targetUrl != null ? targetUrl.toString() : null);

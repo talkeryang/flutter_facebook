@@ -33,7 +33,7 @@
         if (_launchOptions[UIApplicationLaunchOptionsURLKey] != nil) {
             NSURL *url = (NSURL *)_launchOptions[UIApplicationLaunchOptionsURLKey];
             NSString *sourceApplication = _launchOptions[UIApplicationLaunchOptionsSourceApplicationKey];
-            if (url != nil && [url.absoluteString hasPrefix:[self fetchUrlScheme]]) {
+            if (url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]]) {
                 FBSDKURL *appLink = [FBSDKURL URLWithInboundURL:url sourceApplication:sourceApplication];
                 targetUrl = appLink.targetURL;
             }
@@ -80,12 +80,10 @@
 #endif
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if (url != nil && [url.absoluteString hasPrefix:[self fetchUrlScheme]]) {
+    if (url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]]) {
         FBSDKURL *appLink = [FBSDKURL URLWithInboundURL:url sourceApplication:sourceApplication];
         NSURL *targetUrl = appLink.targetURL;
-        if (_channel != nil) {
-            [_channel invokeMethod:@"handleAppLink" arguments:targetUrl.absoluteString ?: [NSNull null]];
-        }
+        [_channel invokeMethod:@"handleAppLink" arguments:targetUrl.absoluteString ?: [NSNull null]];
         return YES;
     }
     return NO;
