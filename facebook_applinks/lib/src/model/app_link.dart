@@ -12,7 +12,8 @@ class DeferredAppLink {
     this.promoCode,
   });
 
-  factory DeferredAppLink.fromJson(Map<String, dynamic> json) => _$DeferredAppLinkFromJson(json);
+  factory DeferredAppLink.fromJson(Map<String, dynamic> json) =>
+      _$DeferredAppLinkFromJson(json);
 
   final String targetUrl;
   final String promoCode;

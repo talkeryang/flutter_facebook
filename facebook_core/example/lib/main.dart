@@ -1,5 +1,4 @@
 import 'package:facebook_core/facebook_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {

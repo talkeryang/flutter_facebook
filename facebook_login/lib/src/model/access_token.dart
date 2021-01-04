@@ -19,7 +19,8 @@ class AccessToken {
     this.isExpired,
   });
 
-  factory AccessToken.fromJson(Map<String, dynamic> json) => _$AccessTokenFromJson(json);
+  factory AccessToken.fromJson(Map<String, dynamic> json) =>
+      _$AccessTokenFromJson(json);
 
   final int expires;
 

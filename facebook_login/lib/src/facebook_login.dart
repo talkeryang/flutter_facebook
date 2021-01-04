@@ -12,7 +12,8 @@ class FacebookLogin {
 
   static final FacebookLogin _instance = FacebookLogin._();
 
-  final MethodChannel _channel = const MethodChannel('v7lin.github.io/facebook_login');
+  final MethodChannel _channel =
+      const MethodChannel('v7lin.github.io/facebook_login');
 
   Future<AccessToken> login({
     List<String> permissions = const <String>['email', 'public_profile'],
@@ -21,7 +22,8 @@ class FacebookLogin {
     assert(permissions != null);
     assert(loginBehavior?.isNotEmpty ?? false);
     try {
-      Map<String, dynamic> result = await _channel.invokeMapMethod<String, dynamic>(
+      Map<String, dynamic> result =
+          await _channel.invokeMapMethod<String, dynamic>(
         'login',
         <String, dynamic>{
           'permissions': permissions,

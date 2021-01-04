@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:facebook_login/facebook_login.dart';
 
 void main() {
   runApp(MyApp());

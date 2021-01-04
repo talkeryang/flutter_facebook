@@ -12,9 +12,11 @@ class FacebookApplinks {
 
   static final FacebookApplinks _instance = FacebookApplinks._();
 
-  final MethodChannel _channel = const MethodChannel('v7lin.github.io/facebook_applinks');
+  final MethodChannel _channel =
+      const MethodChannel('v7lin.github.io/facebook_applinks');
 
-  final StreamController<String> _handleAppLinkController = StreamController<String>.broadcast();
+  final StreamController<String> _handleAppLinkController =
+      StreamController<String>.broadcast();
 
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
@@ -33,7 +35,8 @@ class FacebookApplinks {
   }
 
   Future<DeferredAppLink> fetchDeferredAppLink() async {
-    Map<String, dynamic> result = await _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
+    Map<String, dynamic> result =
+        await _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
     return DeferredAppLink.fromJson(result);
   }
 }
