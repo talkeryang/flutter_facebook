@@ -51,11 +51,11 @@ packages:
     source: hosted
     version: "1.0.0"
   facebook_core:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../../facebook_core"
-      relative: true
-    source: path
+      name: facebook_core
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "0.0.1"
   facebook_login:
     dependency: "direct main"
