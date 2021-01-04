@@ -165,9 +165,9 @@ packages:
   facebook_core:
     dependency: "direct main"
     description:
-      path: "../facebook_core"
-      relative: true
-    source: path
+      name: facebook_core
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "0.0.1"
   fake_async:
     dependency: transitive
