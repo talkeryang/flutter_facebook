@@ -1,6 +1,6 @@
 name: facebook_login
 description: Flutter plugin for Facebook Login.
-version: 0.0.1
+version: 0.1.0
 # author: v7lin <v7lin@qq.com>
 homepage: https://github.com/v7lin/flutter_facebook
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  facebook_core: ^0.0.1
+  facebook_core: ^0.1.0
 
   json_annotation: ^3.0.1
 
