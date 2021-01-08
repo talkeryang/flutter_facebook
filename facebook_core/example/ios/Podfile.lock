@@ -1,8 +1,8 @@
 PODS:
-  - facebook_core (0.0.1):
-    - facebook_core/vendor (= 0.0.1)
+  - facebook_core (0.1.0):
+    - facebook_core/vendor (= 0.1.0)
     - Flutter
-  - facebook_core/vendor (0.0.1):
+  - facebook_core/vendor (0.1.0):
     - FBSDKCoreKit (~> 8.1.0)
     - Flutter
   - FBSDKCoreKit (8.1.0):
@@ -28,7 +28,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  facebook_core: d0a9864949ed77a3bc5f62c2894d2224161246fc
+  facebook_core: 3b9fc04c37f5372b40614f51bb5e2abce8c1ff6e
   FBSDKCoreKit: b3ca27e124dae67122d3bb47c8f96800b39986a6
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
 
