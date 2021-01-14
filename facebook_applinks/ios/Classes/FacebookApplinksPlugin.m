@@ -42,12 +42,16 @@
     } else if ([@"fetchDeferredAppLink" isEqualToString:call.method]) {
         [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *_Nullable url, NSError *_Nullable error) {
             if (error == nil) {
-                FBSDKURL *appLink = url != nil ? [FBSDKURL URLWithURL:url] : nil;
-                NSString *promoCode = url != nil ? [FBSDKAppLinkUtility appInvitePromotionCodeFromURL:url] : nil;
-                result(@{
-                    @"target_url" : appLink.targetURL.absoluteString ?: [NSNull null],
-                    @"promo_code" : promoCode ?: [NSNull null],
-                });
+                if (url != nil && ![url isEqual:[NSNull null]]) {
+                    FBSDKURL *appLink = [FBSDKURL URLWithURL:url];
+                    NSString *promoCode = [FBSDKAppLinkUtility appInvitePromotionCodeFromURL:url];
+                    result(@{
+                        @"target_url" : appLink.targetURL.absoluteString ?: [NSNull null],
+                        @"promo_code" : promoCode ?: [NSNull null],
+                    });
+                } else {
+                    result([FlutterError errorWithCode:@"FAILED" message:@"AppLink is null" details:nil]);
+                }
             } else {
                 result([FlutterError errorWithCode:@"FAILED" message:error.localizedDescription details:nil]);
             }

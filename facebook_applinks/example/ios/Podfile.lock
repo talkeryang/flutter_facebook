@@ -1,8 +1,8 @@
 PODS:
-  - facebook_applinks (0.1.0):
-    - facebook_applinks/vendor (= 0.1.0)
+  - facebook_applinks (0.1.1):
+    - facebook_applinks/vendor (= 0.1.1)
     - Flutter
-  - facebook_applinks/vendor (0.1.0):
+  - facebook_applinks/vendor (0.1.1):
     - FBSDKCoreKit (~> 8.1.0)
     - Flutter
   - facebook_core (0.1.0):
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  facebook_applinks: c20071c6b536c4847449c7c363e781a2d4ac6423
+  facebook_applinks: d664088410a695a2817f08bf1efb8aba92137fd4
   facebook_core: 3b9fc04c37f5372b40614f51bb5e2abce8c1ff6e
   FBSDKCoreKit: b3ca27e124dae67122d3bb47c8f96800b39986a6
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
