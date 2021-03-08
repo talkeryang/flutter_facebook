@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
             ListTile(
               title: const Text('App ID'),
               onTap: () async {
-                final String? appId = await FacebookSdk.instance.getApplicationId();
+                final String? appId =
+                    await FacebookSdk.instance.getApplicationId();
                 print('App ID: ${appId ?? ''}');
               },
             ),
