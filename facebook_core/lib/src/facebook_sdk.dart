@@ -10,7 +10,7 @@ class FacebookSdk {
   final MethodChannel _channel =
       const MethodChannel('v7lin.github.io/facebook_core');
 
-  Future<String> getApplicationId() {
+  Future<String?> getApplicationId() {
     return _channel.invokeMethod<String>('getApplicationId');
   }
 }

@@ -21,10 +21,10 @@ class _MyAppState extends State<MyApp> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: Text('App ID'),
+              title: const Text('App ID'),
               onTap: () async {
-                String appID = await FacebookSdk.instance.getApplicationId();
-                print('App ID: $appID');
+                final String? appId = await FacebookSdk.instance.getApplicationId();
+                print('App ID: ${appId ?? ''}');
               },
             ),
           ],
