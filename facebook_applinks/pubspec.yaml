@@ -1,6 +1,6 @@
 name: facebook_applinks
 description: Flutter plugin for Facebook App Links.
-version: 0.1.1
+version: 0.2.0
 # author: v7lin <v7lin@qq.com>
 homepage: https://github.com/rxreader/flutter_facebook
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  facebook_core: ^0.1.0
+  facebook_core: ^0.2.0
 
   json_annotation: ^3.0.1
 
@@ -25,9 +25,9 @@ dev_dependencies:
   build_runner:
   json_serializable: ^3.5.0
 
-#dependency_overrides:
-#  facebook_core:
-#    path: ../facebook_core
+dependency_overrides:
+  facebook_core:
+    path: ../facebook_core
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
