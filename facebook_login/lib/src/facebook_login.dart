@@ -19,10 +19,8 @@ class FacebookLogin {
     List<String> permissions = const <String>['email', 'public_profile'],
     String loginBehavior = LoginBehavior.DIALOG_ONLY,
   }) async {
-    assert(permissions != null);
-    assert(loginBehavior?.isNotEmpty ?? false);
     try {
-      Map<String, dynamic> result =
+      final Map<String, dynamic>? result =
           await _channel.invokeMapMethod<String, dynamic>(
         'login',
         <String, dynamic>{
@@ -30,7 +28,7 @@ class FacebookLogin {
           'login_behavior': loginBehavior,
         },
       );
-      return AccessToken.fromJson(result);
+      return AccessToken.fromJson(result!);
     } on PlatformException catch (e) {
       throw FacebookLoginException(
         code: e.code,

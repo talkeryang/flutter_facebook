@@ -8,37 +8,36 @@ part 'access_token.g.dart';
 )
 class AccessToken {
   const AccessToken({
-    this.declinedPermissions,
+    required this.token,
+    required this.userId,
+    required this.expires,
+    required this.applicationId,
+    required this.lastRefresh,
+    required this.graphDomain,
+    required this.isExpired,
     this.grantedPermissions,
-    this.userId,
-    this.expires,
-    this.lastRefresh,
-    this.token,
-    this.applicationId,
-    this.graphDomain,
-    this.isExpired,
+    this.declinedPermissions,
   });
 
-  factory AccessToken.fromJson(Map<String, dynamic> json) =>
-      _$AccessTokenFromJson(json);
-
-  final int expires;
-
-  final int lastRefresh;
-
-  final String userId;
+  factory AccessToken.fromJson(Map<String, dynamic> json) => _$AccessTokenFromJson(json);
 
   final String token;
 
+  final String userId;
+
+  final int expires;
+
   final String applicationId;
+
+  final int lastRefresh;
 
   final String graphDomain;
 
-  final List<String> declinedPermissions;
-
-  final List<String> grantedPermissions;
-
   final bool isExpired;
+
+  final List<String>? grantedPermissions;
+
+  final List<String>? declinedPermissions;
 
   Map<String, dynamic> toJson() => _$AccessTokenToJson(this);
 }

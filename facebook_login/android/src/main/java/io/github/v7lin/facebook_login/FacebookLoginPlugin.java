@@ -82,9 +82,9 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        if (call.method.equals("login")) {
+        if ("login".equals(call.method)) {
             login(call, result);
-        } else if (call.method.equals("logout")) {
+        } else if ("logout".equals(call.method)) {
             logout(call, result);
         } else {
             result.notImplemented();

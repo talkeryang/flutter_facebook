@@ -1,6 +1,6 @@
 class FacebookLoginException implements Exception {
-  FacebookLoginException({
-    this.code,
+  const FacebookLoginException({
+    required this.code,
     this.message,
   });
 
@@ -8,5 +8,5 @@ class FacebookLoginException implements Exception {
   static const String FAILED = 'FAILED';
 
   final String code;
-  final String message;
+  final String? message;
 }

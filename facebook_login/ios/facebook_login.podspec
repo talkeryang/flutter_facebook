@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'facebook_login'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Flutter plugin for Facebook Login.'
   s.description      = <<-DESC
 Flutter plugin for Facebook Login.
@@ -20,7 +20,7 @@ Flutter plugin for Facebook Login.
 
   s.static_framework = true
   s.subspec 'vendor' do |sp|
-    sp.dependency 'FBSDKLoginKit', '~> 8.1.0'
+    sp.dependency 'FBSDKLoginKit', '~> 9.0.1'
   end
   
   # Flutter.framework does not contain a i386 slice.
