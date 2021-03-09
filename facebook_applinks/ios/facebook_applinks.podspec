@@ -20,7 +20,7 @@ Flutter plugin for Facebook App Links.
 
   s.static_framework = true
   s.subspec 'vendor' do |sp|
-    sp.dependency 'FBSDKCoreKit', '~> 8.1.0'
+    sp.dependency 'FBSDKCoreKit', '~> 9.0.1'
   end
 
   # Flutter.framework does not contain a i386 slice.
