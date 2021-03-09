@@ -48,5 +48,8 @@ android {
 }
 
 dependencies {
+    vendorImplementation 'com.parse.bolts:bolts-tasks:1.4.0'
+    vendorImplementation 'com.parse.bolts:bolts-applinks:1.4.0'
+    vendorImplementation 'com.parse.bolts:bolts-android:1.4.0'
     vendorImplementation 'com.facebook.android:facebook-applinks:9.0.0'
 }
