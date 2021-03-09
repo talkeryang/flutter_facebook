@@ -30,13 +30,13 @@ class FacebookApplinks {
     return _handleAppLinkController.stream;
   }
 
-  Future<String> getInitialAppLink() {
+  Future<String?> getInitialAppLink() {
     return _channel.invokeMethod<String>('getInitialAppLink');
   }
 
   Future<DeferredAppLink> fetchDeferredAppLink() async {
-    Map<String, dynamic> result =
+    final Map<String, dynamic>? result =
         await _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
-    return DeferredAppLink.fromJson(result);
+    return DeferredAppLink.fromJson(result!);
   }
 }

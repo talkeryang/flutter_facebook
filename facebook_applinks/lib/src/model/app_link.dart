@@ -8,15 +8,15 @@ part 'app_link.g.dart';
 )
 class DeferredAppLink {
   const DeferredAppLink({
-    this.targetUrl,
+    required this.targetUrl,
     this.promoCode,
   });
 
   factory DeferredAppLink.fromJson(Map<String, dynamic> json) =>
       _$DeferredAppLinkFromJson(json);
 
-  final String targetUrl;
-  final String promoCode;
+  final String? targetUrl;
+  final String? promoCode;
 
   Map<String, dynamic> toJson() => _$DeferredAppLinkToJson(this);
 }

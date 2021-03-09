@@ -85,7 +85,7 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
-    if (call.method.equals("getInitialAppLink")) {
+    if ("getInitialAppLink".equals(call.method)) {
       Intent intent = activityPluginBinding.getActivity().getIntent();
 
       Uri targetUrl = null;
@@ -94,7 +94,7 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
         targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
       }
       result.success(targetUrl != null ? targetUrl.toString() : null);
-    } else if (call.method.equals("fetchDeferredAppLink")) {
+    } else if ("fetchDeferredAppLink".equals(call.method)) {
       AppLinkData.fetchDeferredAppLinkData(flutterPluginBinding.getApplicationContext(), new AppLinkData.CompletionHandler() {
         @Override
         public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
