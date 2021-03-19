@@ -15,18 +15,18 @@ class FacebookApplinks {
   final MethodChannel _channel =
       const MethodChannel('v7lin.github.io/facebook_applinks');
 
-  final StreamController<String> _handleAppLinkController =
-      StreamController<String>.broadcast();
+  final StreamController<String?> _handleAppLinkController =
+      StreamController<String?>.broadcast();
 
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
       case 'handleAppLink':
-        _handleAppLinkController.add(call.arguments as String);
+        _handleAppLinkController.add(call.arguments as String?);
         break;
     }
   }
 
-  Stream<String> get handleAppLink {
+  Stream<String?> get handleAppLink {
     return _handleAppLinkController.stream;
   }
 

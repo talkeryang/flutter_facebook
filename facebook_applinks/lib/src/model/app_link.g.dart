@@ -8,8 +8,8 @@ part of 'app_link.dart';
 
 DeferredAppLink _$DeferredAppLinkFromJson(Map<String, dynamic> json) {
   return DeferredAppLink(
-    targetUrl: json['target_url'] as String,
-    promoCode: json['promo_code'] as String,
+    targetUrl: json['target_url'] as String?,
+    promoCode: json['promo_code'] as String?,
   );
 }
 

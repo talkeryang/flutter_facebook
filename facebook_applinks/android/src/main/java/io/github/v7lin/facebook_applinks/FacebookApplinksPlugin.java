@@ -27,129 +27,131 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 
-/** FacebookApplinksPlugin */
+/**
+ * FacebookApplinksPlugin
+ */
 public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.NewIntentListener {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
-  private MethodChannel channel;
-  private FlutterPluginBinding flutterPluginBinding;
-  private Handler mainHandler;
-  private ActivityPluginBinding activityPluginBinding;
+    /// The MethodChannel that will the communication between Flutter and native Android
+    ///
+    /// This local reference serves to register the plugin with the Flutter Engine and unregister it
+    /// when the Flutter Engine is detached from the Activity
+    private MethodChannel channel;
+    private Context applicationContext;
+    private ActivityPluginBinding activityPluginBinding;
 
-  // --- FlutterPlugin
+    private Handler mainHandler;
 
-  @Override
-  public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
-    channel = new MethodChannel(binding.getBinaryMessenger(), "v7lin.github.io/facebook_applinks");
-    channel.setMethodCallHandler(this);
-    flutterPluginBinding = binding;
-    mainHandler = new Handler(Looper.getMainLooper());
-  }
+    // --- FlutterPlugin
 
-  @Override
-  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-    channel.setMethodCallHandler(null);
-    channel = null;
-    flutterPluginBinding = null;
-    mainHandler.removeCallbacksAndMessages(null);
-    mainHandler = null;
-  }
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "v7lin.github.io/facebook_applinks");
+        channel.setMethodCallHandler(this);
+        applicationContext = binding.getApplicationContext();
+        mainHandler = new Handler(Looper.getMainLooper());
+    }
 
-  // --- ActivityAware
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
+        channel = null;
+        applicationContext = null;
+        mainHandler.removeCallbacksAndMessages(null);
+        mainHandler = null;
+    }
 
-  @Override
-  public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
-    activityPluginBinding = binding;
-    activityPluginBinding.addOnNewIntentListener(this);
-  }
+    // --- ActivityAware
 
-  @Override
-  public void onDetachedFromActivityForConfigChanges() {
-    onDetachedFromActivity();
-  }
+    @Override
+    public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+        activityPluginBinding = binding;
+        activityPluginBinding.addOnNewIntentListener(this);
+    }
 
-  @Override
-  public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
-    onAttachedToActivity(binding);
-  }
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+        onDetachedFromActivity();
+    }
 
-  @Override
-  public void onDetachedFromActivity() {
-    activityPluginBinding.removeOnNewIntentListener(this);
-    activityPluginBinding = null;
-  }
+    @Override
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+        onAttachedToActivity(binding);
+    }
 
-  // --- MethodCallHandler
+    @Override
+    public void onDetachedFromActivity() {
+        activityPluginBinding.removeOnNewIntentListener(this);
+        activityPluginBinding = null;
+    }
 
-  @Override
-  public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
-    if ("getInitialAppLink".equals(call.method)) {
-      Intent intent = activityPluginBinding.getActivity().getIntent();
+    // --- MethodCallHandler
 
-      Uri targetUrl = null;
-      Uri url = intent.getData();
-      if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
-        targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
-      }
-      result.success(targetUrl != null ? targetUrl.toString() : null);
-    } else if ("fetchDeferredAppLink".equals(call.method)) {
-      AppLinkData.fetchDeferredAppLinkData(flutterPluginBinding.getApplicationContext(), new AppLinkData.CompletionHandler() {
-        @Override
-        public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
-          if (appLinkData != null) {
-            if (mainHandler != null) {
-              mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                  Map<String, Object> map = new HashMap<>();
-                  map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
-                  map.put("promo_code", appLinkData.getPromotionCode());
-                  result.success(map);
-                }
-              });
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
+        if ("getInitialAppLink".equals(call.method)) {
+            Intent intent = activityPluginBinding.getActivity().getIntent();
+
+            Uri targetUrl = null;
+            Uri url = intent.getData();
+            if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
+                targetUrl = AppLinks.getTargetUrlFromInboundIntent(applicationContext, intent);
             }
-          } else {
-            if (mainHandler != null) {
-              mainHandler.post(new Runnable() {
+            result.success(targetUrl != null ? targetUrl.toString() : null);
+        } else if ("fetchDeferredAppLink".equals(call.method)) {
+            AppLinkData.fetchDeferredAppLinkData(applicationContext, new AppLinkData.CompletionHandler() {
                 @Override
-                public void run() {
-                  result.error("FAILED", "AppLink is null", null);
+                public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
+                    if (appLinkData != null) {
+                        if (mainHandler != null) {
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
+                                    map.put("promo_code", appLinkData.getPromotionCode());
+                                    result.success(map);
+                                }
+                            });
+                        }
+                    } else {
+                        if (mainHandler != null) {
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    result.error("FAILED", "AppLink is null", null);
+                                }
+                            });
+                        }
+                    }
                 }
-              });
-            }
-          }
+            });
+        } else {
+            result.notImplemented();
         }
-      });
-    } else {
-      result.notImplemented();
     }
-  }
 
-  private String fetchUrlScheme() {
-    try {
-      Context applicationContext = flutterPluginBinding.getApplicationContext();
-      ApplicationInfo appInfo = applicationContext.getPackageManager().getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA);
-      return appInfo.metaData != null ? appInfo.metaData.getString("facebook_applinks") : null;
-    } catch (PackageManager.NameNotFoundException e) {
-      // ignore
+    private String fetchUrlScheme() {
+        try {
+            ApplicationInfo appInfo = applicationContext.getPackageManager().getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData != null ? appInfo.metaData.getString("facebook_applinks") : null;
+        } catch (PackageManager.NameNotFoundException e) {
+            // ignore
+        }
+        return null;
     }
-    return null;
-  }
 
-  // --- NewIntentListener
+    // --- NewIntentListener
 
-  @Override
-  public boolean onNewIntent(Intent intent) {
-    Uri url = intent.getData();
-    if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
-      Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(flutterPluginBinding.getApplicationContext(), intent);
-      if (channel != null) {
-        channel.invokeMethod("handleAppLink", targetUrl != null ? targetUrl.toString() : null);
-      }
-      return true;
+    @Override
+    public boolean onNewIntent(Intent intent) {
+        Uri url = intent.getData();
+        if (url != null && TextUtils.equals(url.getScheme(), fetchUrlScheme())) {
+            Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(applicationContext, intent);
+            if (channel != null) {
+                channel.invokeMethod("handleAppLink", targetUrl != null ? targetUrl.toString() : null);
+            }
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 }
