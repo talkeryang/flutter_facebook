@@ -4,7 +4,6 @@ part 'access_token.g.dart';
 
 @JsonSerializable(
   explicitToJson: true,
-  fieldRename: FieldRename.snake,
 )
 class AccessToken {
   const AccessToken({
