@@ -8,6 +8,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookAuthorizationException;
 import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -92,7 +93,7 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
     }
 
     private void login(@NonNull MethodCall call, @NonNull final Result result) {
-        List<String> permissions = call.argument("permissions");
+        final List<String> permissions = call.argument("permissions");
         String loginBehavior = call.argument("login_behavior");
         loginManager.setLoginBehavior(convertLoginBehavior(loginBehavior));
         callbackManager = CallbackManager.Factory.create();
@@ -129,10 +130,22 @@ public class FacebookLoginPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
             @Override
             public void onError(FacebookException error) {
-                if (result != null) {
-                    result.error("FAILED", error.getMessage(), null);
+                if (error instanceof FacebookAuthorizationException) {
+                    if (AccessToken.getCurrentAccessToken() != null) {
+                        LoginManager.getInstance().logOut();
+                        loginManager.logIn(activityPluginBinding.getActivity(), permissions);
+                    } else {
+                        if (result != null) {
+                            result.error("FAILED", error.getMessage(), null);
+                        }
+                        unregisterCallback();
+                    }
+                } else {
+                    if (result != null) {
+                        result.error("FAILED", error.getMessage(), null);
+                    }
+                    unregisterCallback();
                 }
-                unregisterCallback();
             }
 
             private void unregisterCallback() {
