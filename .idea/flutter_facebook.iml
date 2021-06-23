@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/ios/.symlinks/plugins/facebook_core/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/ios/.symlinks/plugins/facebook_core/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/ios/.symlinks/plugins/facebook_core/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_applinks/example/ios/.symlinks/plugins/facebook_core/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_core/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_core/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_core/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_core/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/example/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

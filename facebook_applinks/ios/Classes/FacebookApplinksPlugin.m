@@ -29,42 +29,33 @@
 #pragma mark - MethodCallHandler
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
-    if ([@"getInitialAppLink" isEqualToString:call.method]) {
-        // 获取初始化深度链接
-        NSURL *targetUrl = nil;
-        if (_launchOptions[UIApplicationLaunchOptionsURLKey] != nil) {
-            NSURL *url = (NSURL *)_launchOptions[UIApplicationLaunchOptionsURLKey];
-            NSString *sourceApplication = _launchOptions[UIApplicationLaunchOptionsSourceApplicationKey];
-            if (url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]]) {
-                FBSDKURL *appLink = [FBSDKURL URLWithInboundURL:url sourceApplication:sourceApplication];
-                targetUrl = appLink.targetURL;
-            }
+    if ([@"fetchAppLink" isEqualToString:call.method]) {
+        NSURL *url = (NSURL *)_launchOptions[UIApplicationLaunchOptionsURLKey];
+        bool isFBLink = url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]];
+        if (isFBLink) {
+            [_channel invokeMethod:@"handleAppLink" arguments:url.absoluteString];
         }
-        result(targetUrl.absoluteString ? targetUrl.absoluteString : [NSNull null]);
+        result(nil);
     } else if ([@"fetchDeferredAppLink" isEqualToString:call.method]) {
-        // 获取延迟深度链接
-        if (_launchOptions[UIApplicationLaunchOptionsURLKey] != nil) {
+        if (_launchOptions[UIApplicationLaunchOptionsURLKey] == nil) {
             //[FBSDKSettings setAutoInitEnabled:YES];
             [FBSDKApplicationDelegate initializeSDK:nil];
             [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *_Nullable url, NSError *_Nullable error) {
                 if (error) {
+                    NSLog(@"facebook_applinks: Received error while fetching deferred link %@", error.localizedDescription);
                     result([FlutterError errorWithCode:@"FAILED" message:error.localizedDescription details:nil]);
                 }
-
-                if (url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]]) {
-                    FBSDKURL *appLink = [FBSDKURL URLWithURL:url];
-                    NSString *promoCode = [FBSDKAppLinkUtility appInvitePromotionCodeFromURL:url];
-                    result(@{
-                        @"target_url" : appLink.targetURL.absoluteString ? appLink.targetURL.absoluteString : [NSNull null],
-                        @"promo_code" : promoCode ? promoCode : [NSNull null],
-                    });
-                } else {
-                    result([NSNull null]);
+                
+                if (url) {
+                    if (@available(iOS 10.0, *)) {
+                        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                    } else {
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
                 }
             }];
-        } else {
-            result([NSNull null]);
         }
+        result(nil);
     } else {
         result(FlutterMethodNotImplemented);
     }
@@ -90,14 +81,28 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
-    // iOS9及以上 & 仅处理深度链接
-    NSString *sourceApplication = _launchOptions[UIApplicationLaunchOptionsSourceApplicationKey];
-    if (url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]]) {
-        FBSDKURL *appLink = [FBSDKURL URLWithInboundURL:url sourceApplication:sourceApplication];
-        [_channel invokeMethod:@"handleAppLink" arguments:appLink.targetURL.absoluteString ? appLink.targetURL.absoluteString : [NSNull null]];
-        return YES;
+    // iOS9及以上
+    bool isFBLink = url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]];
+    if (!isFBLink) {
+        return NO;
     }
-    return NO;
+    
+    if ([url.absoluteString containsString:@"fb_app_id"]) {
+        // 延时深度链接
+        NSLog(@"facebook_applinks: handle deferred link %@", url.absoluteString);
+
+        NSString *promoCode = [FBSDKAppLinkUtility appInvitePromotionCodeFromURL:url];
+        [_channel invokeMethod:@"handleDeferredAppLink" arguments:@{
+            @"target_url" : url.absoluteString,
+            @"promo_code" : promoCode ? promoCode : @"",
+        }];
+    } else {
+        // 深度链接
+        NSLog(@"facebook_applinks: handle deep link %@", url.absoluteString);
+        
+        [_channel invokeMethod:@"handleAppLink" arguments:url.absoluteString];
+    }
+    return YES;
 }
 
 @end
