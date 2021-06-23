@@ -17,6 +17,12 @@
     if ([@"getApplicationId" isEqualToString:call.method]) {
         //        result([[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"] ?: [NSNull null]);
         result(FBSDKSettings.appID);
+    } else if ([@"setAdvertiserTrackingEnabled" isEqualToString:call.method]) {
+        if (@available(iOS 14.0, *)) {
+            BOOL enabled = [call.arguments[@"enabled"] boolValue];
+            [FBSDKSettings setAdvertiserTrackingEnabled:enabled];
+        }
+        result(nil);
     } else {
         result(FlutterMethodNotImplemented);
     }
@@ -36,6 +42,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
 }
 
 @end
