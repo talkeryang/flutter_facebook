@@ -39,4 +39,12 @@ class FacebookApplinks {
     assert(Platform.isIOS);
     return _deferredAppLinkController.stream;
   }
+
+  Future<void> fetchAppLink() {
+    return _channel.invokeMethod<void>('fetchAppLink');
+  }
+
+  Future<void> fetchDeferredAppLink() {
+    return _channel.invokeMethod<void>('fetchDeferredAppLink');
+  }
 }
