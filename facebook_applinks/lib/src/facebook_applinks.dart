@@ -33,9 +33,8 @@ class FacebookApplinks {
     return _appLinkController.stream;
   }
 
-  Stream<DeferredAppLink> get universalLink {
-    final Map<String, dynamic>? result = _deferredLinkController.stream;
-    return DeferredAppLink.fromJson(result!);
+  Stream<Map<String, dynamic>?> get deferredAppLink {
+    return _deferredAppLinkController.stream;
   }
 
   Future<void> fetchAppLink() {
