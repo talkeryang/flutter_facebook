@@ -56,14 +56,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.2.0"
+    version: "0.2.2"
   facebook_core:
     dependency: transitive
     description:
-      name: facebook_core
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.0"
+      path: "../../facebook_core"
+      relative: true
+    source: path
+    version: "0.2.2"
   fake_async:
     dependency: transitive
     description:

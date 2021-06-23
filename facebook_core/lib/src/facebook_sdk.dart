@@ -13,4 +13,16 @@ class FacebookSdk {
   Future<String?> getApplicationId() {
     return _channel.invokeMethod<String>('getApplicationId');
   }
+
+    /// Facebook 用户追踪开关上报FB（iOS)
+  Future<void> setAdvertiserTrackingEnabled({
+    required bool? enabled,
+  }) {
+    return _channel.invokeMethod(
+      'setAdvertiserTrackingEnabled',
+      <String, dynamic>{
+        'enabled': enabled,
+      },
+    );
+  }
 }
