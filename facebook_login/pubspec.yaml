@@ -13,7 +13,10 @@ dependencies:
     sdk: flutter
 
   facebook_core:
-    path: ../facebook_core
+    git:
+      ref: 0.2.2
+      url: git@git.jinbaopay.com:apps/flutter_facebook.git
+      path: facebook_core
     
   json_annotation: ^4.0.0
 
