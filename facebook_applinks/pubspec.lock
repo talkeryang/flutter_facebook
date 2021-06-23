@@ -165,10 +165,12 @@ packages:
   facebook_core:
     dependency: "direct main"
     description:
-      path: "../facebook_core"
-      relative: true
-    source: path
-    version: "0.2.2"
+      path: facebook_core
+      ref: "0.3.0"
+      resolved-ref: d282c66b66269c79702ce6f5748129daf61f7385
+      url: "git@git.jinbaopay.com:apps/flutter_facebook.git"
+    source: git
+    version: "0.3.0"
   fake_async:
     dependency: transitive
     description:

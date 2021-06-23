@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:facebook_applinks/src/model/app_link.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ class FacebookApplinks {
 
   final StreamController<String?> _appLinkController = StreamController<String?>.broadcast();
 
-  final StreamController<Map<String, dynamic>?> _deferredAppLinkController = StreamController<Map<String, dynamic>?>.broadcast();
+  final StreamController<DeferredAppLink?> _deferredAppLinkController = StreamController<DeferredAppLink?>.broadcast();
 
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
@@ -24,24 +25,18 @@ class FacebookApplinks {
         _appLinkController.add(call.arguments as String?);
         break;
       case 'fetchDeferredAppLink':
-        _deferredAppLinkController.add(call.arguments as Map<String, dynamic>?);
+        _deferredAppLinkController.add(DeferredAppLink.fromJson((call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
         break;
     }
   }
 
   Stream<String?> get appLink {
+    assert(Platform.isIOS);
     return _appLinkController.stream;
   }
 
-  Stream<Map<String, dynamic>?> get deferredAppLink {
+  Stream<DeferredAppLink?> get deferredAppLink {
+    assert(Platform.isIOS);
     return _deferredAppLinkController.stream;
-  }
-
-  Future<void> fetchAppLink() {
-    return _channel.invokeMethod<String>('fetchAppLink');
-  }
-
-  Future<void> fetchDeferredAppLink() {
-    return _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
   }
 }
