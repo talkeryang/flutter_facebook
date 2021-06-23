@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'facebook_core'
-  s.version          = '0.3.0'
+  s.version          = '1.0.0'
   s.summary          = 'Flutter plugin for Facebook Core.'
   s.description      = <<-DESC
 Flutter plugin for Facebook Core.

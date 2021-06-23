@@ -14,7 +14,7 @@ dependencies:
 
   facebook_core:
     git:
-      ref: 0.3.0
+      ref: 1.0.0
       url: git@git.jinbaopay.com:apps/flutter_facebook.git
       path: facebook_core
     
