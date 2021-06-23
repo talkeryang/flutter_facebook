@@ -27,8 +27,8 @@ class _MyAppState extends State<MyApp> {
               title: const Text('fetchDeferredAppLink'),
               onTap: () async {
                 try {
-                  final DeferredAppLink link = await FacebookApplinks.instance.fetchDeferredAppLink();
-                  print('link: ${json.encode(link)}');
+                  //final DeferredAppLink link = await FacebookApplinks.instance.fetchDeferredAppLink();
+                  //print('link: ${json.encode(link)}');
                 } on PlatformException catch (e) {
                   print(e);
                 }
