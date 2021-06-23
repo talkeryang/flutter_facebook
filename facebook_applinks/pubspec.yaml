@@ -1,6 +1,6 @@
 name: facebook_applinks
 description: Flutter plugin for Facebook App Links.
-version: 0.2.2
+version: 0.3.0
 # author: v7lin <v7lin@qq.com>
 homepage: https://github.com/rxreader/flutter_facebook
 
@@ -14,7 +14,7 @@ dependencies:
 
   facebook_core:
     git:
-      ref: 0.2.2
+      ref: 0.3.0
       url: git@git.jinbaopay.com:apps/flutter_facebook.git
       path: facebook_core
 
