@@ -170,6 +170,14 @@
             </list>
           </value>
         </entry>
+        <entry key="facebook_core">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-f1534974f2b0d60ed3f9a450f5d19969bf15f561/facebook_core/lib" />
+              <option value="$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-d282c66b66269c79702ce6f5748129daf61f7385/facebook_core/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="fake_async">
           <value>
             <list>
@@ -453,6 +461,8 @@
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-d282c66b66269c79702ce6f5748129daf61f7385/facebook_core/lib" />
+      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-f1534974f2b0d60ed3f9a450f5d19969bf15f561/facebook_core/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/_fe_analyzer_shared-18.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/analyzer-1.2.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-2.0.0/lib" />
