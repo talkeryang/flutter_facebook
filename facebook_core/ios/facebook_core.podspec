@@ -1,10 +1,10 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint facebook_core.podspec' to validate before publishing.
+# Run 'pod lib lint facebook_core.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
   s.name             = 'facebook_core'
-  s.version          = '0.2.2'
+  s.version          = '0.3.0'
   s.summary          = 'Flutter plugin for Facebook Core.'
   s.description      = <<-DESC
 Flutter plugin for Facebook Core.

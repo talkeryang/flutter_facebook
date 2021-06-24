@@ -1,14 +1,14 @@
 PODS:
-  - facebook_core (0.2.2):
-    - facebook_core/vendor (= 0.2.2)
+  - facebook_core (0.3.0):
+    - facebook_core/vendor (= 0.3.0)
     - Flutter
-  - facebook_core/vendor (0.2.2):
+  - facebook_core/vendor (0.3.0):
     - FBSDKCoreKit (~> 9.0.1)
     - Flutter
-  - facebook_login (0.2.2):
-    - facebook_login/vendor (= 0.2.2)
+  - facebook_login (0.3.0):
+    - facebook_login/vendor (= 0.3.0)
     - Flutter
-  - facebook_login/vendor (0.2.2):
+  - facebook_login/vendor (0.3.0):
     - FBSDKLoginKit (~> 9.0.1)
     - Flutter
   - FBSDKCoreKit (9.0.1):
@@ -42,8 +42,8 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  facebook_core: b8dbfd2bbf90dd18fb3eca63f5dd950d3a9ab4d0
-  facebook_login: 27e328b79320d3826667bce8de03abfc16ed7778
+  facebook_core: 4927deae447c15534131735cb0f7413bbdc276f3
+  facebook_login: 377cf61a1db619e22eeb5042fc969bb58fd6cb3d
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
