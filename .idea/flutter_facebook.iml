@@ -43,6 +43,10 @@
       <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/build" />
       <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/facebook_login/example/ios/.symlinks/plugins/facebook_core/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_share/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_share/build" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_share/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/facebook_share/example/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
