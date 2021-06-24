@@ -82,6 +82,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
     // iOS9及以上
+    NSLog(@"facebook_applinks: openURL %@", url);
     bool isFBLink = url != nil && [url.scheme isEqualToString:[self fetchUrlScheme]];
     if (!isFBLink) {
         return NO;

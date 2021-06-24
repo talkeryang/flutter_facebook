@@ -21,21 +21,21 @@ class FacebookApplinks {
 
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
-      case 'fetchAppLink':
+      case 'handleAppLink':
         _appLinkController.add(call.arguments as String?);
         break;
-      case 'fetchDeferredAppLink':
+      case 'handleDeferredAppLink':
         _deferredAppLinkController.add(DeferredAppLink.fromJson((call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
         break;
     }
   }
 
-  Stream<String?> get appLink {
+  Stream<String?> get handleAppLink {
     assert(Platform.isIOS);
     return _appLinkController.stream;
   }
 
-  Stream<DeferredAppLink?> get deferredAppLink {
+  Stream<DeferredAppLink?> get handleDeferredAppLink {
     assert(Platform.isIOS);
     return _deferredAppLinkController.stream;
   }
