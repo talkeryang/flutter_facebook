@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  facebook_share: 149a6225ec6465e9ff90baae466636f0d371b4be
+  facebook_share: e40b1cc3ca0e74fc3c7fb509d60c35e25baf6aae
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKShareKit: 6a85acb92eaf43a0b6dfa2ba6106eb74c7f10d30
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c

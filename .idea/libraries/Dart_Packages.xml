@@ -160,6 +160,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.2/lib" />
+              <option value="$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.3/lib" />
             </list>
           </value>
         </entry>
@@ -173,7 +174,7 @@
         <entry key="facebook_core">
           <value>
             <list>
-              <option value="$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-f1534974f2b0d60ed3f9a450f5d19969bf15f561/facebook_core/lib" />
+              <option value="$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-36e8d4e22d1c171ee88edd297f8b3bd60224fb25/facebook_core/lib" />
               <option value="$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-d282c66b66269c79702ce6f5748129daf61f7385/facebook_core/lib" />
             </list>
           </value>
@@ -315,6 +316,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.11.0/lib" />
+              <option value="$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.11.1/lib" />
             </list>
           </value>
         </entry>
@@ -461,8 +463,8 @@
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-36e8d4e22d1c171ee88edd297f8b3bd60224fb25/facebook_core/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-d282c66b66269c79702ce6f5748129daf61f7385/facebook_core/lib" />
-      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/git/flutter_facebook-f1534974f2b0d60ed3f9a450f5d19969bf15f561/facebook_core/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/_fe_analyzer_shared-18.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/analyzer-1.2.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-2.0.0/lib" />
@@ -486,6 +488,7 @@
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-3.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/crypto-3.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.2/lib" />
+      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.3/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/dart_style-1.3.14/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/fake_async-1.2.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-6.1.0/lib" />
@@ -505,6 +508,7 @@
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_config-2.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.8.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.11.0/lib" />
+      <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.11.1/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pool-1.5.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-2.0.0/lib" />
       <root url="file://$USER_HOME$/.bin/flutter/.pub-cache/hosted/pub.flutter-io.cn/pubspec_parse-1.0.0/lib" />
