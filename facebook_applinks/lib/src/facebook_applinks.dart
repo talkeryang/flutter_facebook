@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:facebook_applinks/src/model/app_link.dart';
 import 'package:flutter/services.dart';
@@ -12,31 +13,38 @@ class FacebookApplinks {
 
   static final FacebookApplinks _instance = FacebookApplinks._();
 
-  final MethodChannel _channel =
-      const MethodChannel('v7lin.github.io/facebook_applinks');
+  final MethodChannel _channel = const MethodChannel('v7lin.github.io/facebook_applinks');
 
-  final StreamController<String?> _handleAppLinkController =
-      StreamController<String?>.broadcast();
+  final StreamController<String?> _appLinkController = StreamController<String?>.broadcast();
+
+  final StreamController<DeferredAppLink?> _deferredAppLinkController = StreamController<DeferredAppLink?>.broadcast();
 
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
       case 'handleAppLink':
-        _handleAppLinkController.add(call.arguments as String?);
+        _appLinkController.add(call.arguments as String?);
+        break;
+      case 'handleDeferredAppLink':
+        _deferredAppLinkController.add(DeferredAppLink.fromJson((call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
         break;
     }
   }
 
   Stream<String?> get handleAppLink {
-    return _handleAppLinkController.stream;
+    assert(Platform.isIOS);
+    return _appLinkController.stream;
   }
 
-  Future<String?> getInitialAppLink() {
-    return _channel.invokeMethod<String>('getInitialAppLink');
+  Stream<DeferredAppLink?> get handleDeferredAppLink {
+    assert(Platform.isIOS);
+    return _deferredAppLinkController.stream;
   }
 
-  Future<DeferredAppLink> fetchDeferredAppLink() async {
-    final Map<String, dynamic>? result =
-        await _channel.invokeMapMethod<String, dynamic>('fetchDeferredAppLink');
-    return DeferredAppLink.fromJson(result!);
+  Future<void> fetchAppLink() {
+    return _channel.invokeMethod<void>('fetchAppLink');
+  }
+
+  Future<void> fetchDeferredAppLink() {
+    return _channel.invokeMethod<void>('fetchDeferredAppLink');
   }
 }
