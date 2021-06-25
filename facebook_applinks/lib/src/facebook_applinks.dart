@@ -31,12 +31,12 @@ class FacebookApplinks {
   }
 
   Stream<String?> get handleAppLink {
-    assert(Platform.isIOS);
+    assert(Platform.isIOS || Platform.isAndroid);
     return _appLinkController.stream;
   }
 
   Stream<DeferredAppLink?> get handleDeferredAppLink {
-    assert(Platform.isIOS);
+    assert(Platform.isIOS || Platform.isAndroid);
     return _deferredAppLinkController.stream;
   }
 
