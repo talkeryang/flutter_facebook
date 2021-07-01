@@ -23,6 +23,17 @@
             [FBSDKSettings setAdvertiserTrackingEnabled:enabled];
         }
         result(nil);
+    } else if ([@"logPurchase" isEqualToString:call.method]) {
+        NSNumber *purchaseAmount = call.arguments[@"purchaseAmount"];
+        NSString *currency = call.arguments[@"currency"];
+        NSString *parameters = call.arguments[@"parameters"];
+        NSError *error = nil;
+        NSDictionary *params = [NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+        if (error) {
+            [FBSDKAppEvents logPurchase:purchaseAmount.doubleValue currency:currency];
+        } else {
+            [FBSDKAppEvents logPurchase:purchaseAmount.doubleValue currency:currency parameters:params];
+        }
     } else {
         result(FlutterMethodNotImplemented);
     }
