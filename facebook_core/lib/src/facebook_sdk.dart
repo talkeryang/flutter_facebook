@@ -19,7 +19,6 @@ class FacebookSdk {
 
   ///[purchaseAmount] 必传 价格
   ///[currency] 必传 单位
-  ///[productId]产品id
   ///[contentId]动态广告必传 例如书籍id
   ///[contentType]类型 默认为product
   ///[content]默认为{}
@@ -27,7 +26,6 @@ class FacebookSdk {
   Future<void> logPurchase({
     required double purchaseAmount,
     required String currency,
-    required String productId,
     String? contentId,
     String? contentType,
     String? content,
@@ -39,9 +37,9 @@ class FacebookSdk {
         _ARGUMENT_KEY_PURCHASEAMOUNT: purchaseAmount,
         _ARGUMENT_KEY_CURRENCY: currency,
         _ARGUMENT_KEY_PARAMETERS: json.encode(<String, dynamic>{
-          'fb_content_id': contentId ?? productId,
-          'fb_content_type': contentType ?? 'product',
-          'fb_content': content ?? '{}',
+          if (contentId != null) 'fb_content_id': contentId,
+          if (contentType != null) 'fb_content_type': contentType,
+          if (content != null) 'fb_content': content,
           if (mediaExtra?.isNotEmpty ?? false) ...mediaExtra!,
         }),
       },
