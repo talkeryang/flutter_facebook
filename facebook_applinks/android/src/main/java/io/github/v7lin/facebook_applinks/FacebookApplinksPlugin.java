@@ -121,7 +121,7 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
               mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                  result.error("FAILED", "AppLink is null", null);
+                  result.success('');
                 }
               });
             }
