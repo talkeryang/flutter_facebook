@@ -48,6 +48,6 @@ android {
 }
 
 dependencies {
-    vendorImplementation 'com.facebook.android:facebook-core:9.0.0'
-    vendorImplementation 'com.facebook.android:facebook-common:9.0.0'
+    vendorImplementation 'com.facebook.android:facebook-core:11.3.0'
+    vendorImplementation 'androidx.browser:browser:1.3.0'
 }
