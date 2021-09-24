@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -7,6 +8,7 @@ class FacebookSdk {
   FacebookSdk._();
 
   static const String _METHOD_LOGPURCHASE = 'logPurchase';
+  static const String _METHOD_SUPPORT_CUSTOM_TABS_PACKAGES = 'supportCustomTabsPackages';
   static const String _ARGUMENT_KEY_PURCHASEAMOUNT = 'purchaseAmount';
   static const String _ARGUMENT_KEY_CURRENCY = 'currency';
   static const String _ARGUMENT_KEY_PARAMETERS = 'parameters';
@@ -44,6 +46,12 @@ class FacebookSdk {
         }),
       },
     );
+  }
+
+  Future<dynamic> supportCustomTabsPackages() async {
+    if (Platform.isAndroid) {
+      return _channel.invokeMethod<dynamic>(_METHOD_SUPPORT_CUSTOM_TABS_PACKAGES);
+    }
   }
 
   Future<String?> getApplicationId() {
