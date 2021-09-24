@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'facebook_applinks'
-  s.version          = '0.3.0'
+  s.version          = '0.3.2'
   s.summary          = 'Flutter plugin for Facebook App Links.'
   s.description      = <<-DESC
 Flutter plugin for Facebook App Links.
