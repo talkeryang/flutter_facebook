@@ -56,16 +56,16 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.3.2"
   facebook_core:
     dependency: transitive
     description:
       path: facebook_core
-      ref: "0.3.0"
-      resolved-ref: "483a9e59056b14d0fc2da5a9d35a5533280ec06e"
+      ref: "0.3.2"
+      resolved-ref: "814a255c1f142fbfa3482b53063e177aabee25e2"
       url: "git@git.jinbaopay.com:apps/flutter_facebook.git"
     source: git
-    version: "0.3.0"
+    version: "0.3.2"
   fake_async:
     dependency: transitive
     description:
