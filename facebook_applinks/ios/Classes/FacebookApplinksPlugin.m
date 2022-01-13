@@ -105,15 +105,16 @@
                 @"target_url" : url.absoluteString,
                 @"promo_code" : promoCode ? promoCode : @"",
             }];
+            return YES;
         } else if (parsedUrl.targetURL != nil && parsedUrl.appLinkData != nil && [parsedUrl.appLinkData objectForKey:@"referer_app_link"]) {
             NSLog(@"facebook_applinks: handle fb deep link %@", url.absoluteString);
             [_channel invokeMethod:@"handleAppLink" arguments:url.absoluteString];
+            return YES;
         } else {
             NSLog(@"facebook_applinks: pass handle %@", url.absoluteString);
         }
-
     }
-    return YES;
+    return NO;
 }
 
 @end
