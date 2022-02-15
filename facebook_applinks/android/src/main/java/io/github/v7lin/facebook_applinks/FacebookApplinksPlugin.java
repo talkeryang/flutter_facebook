@@ -8,16 +8,13 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.facebook.applinks.AppLinkData;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import bolts.AppLinks;
+import com.facebook.FacebookSdk;
+import com.facebook.LoggingBehavior;
+import com.facebook.applinks.AppLinkData;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -26,6 +23,8 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * FacebookApplinksPlugin
@@ -66,6 +65,26 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
   public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
     activityPluginBinding = binding;
     activityPluginBinding.addOnNewIntentListener(this);
+    FacebookSdk.setAutoInitEnabled(true);
+    FacebookSdk.fullyInitialize();
+    AppLinkData.fetchDeferredAppLinkData(applicationContext, new AppLinkData.CompletionHandler() {
+      @Override
+      public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
+        if (appLinkData != null) {
+          if (mainHandler != null) {
+            mainHandler.post(new Runnable() {
+              @Override
+              public void run() {
+                Map<String, Object> map = new HashMap<>();
+                map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
+                map.put("promo_code", appLinkData.getPromotionCode());
+                channel.invokeMethod("handleDeferredAppLink", map);
+              }
+            });
+          }
+        }
+      }
+    });
   }
 
   @Override
@@ -100,34 +119,7 @@ public class FacebookApplinksPlugin implements FlutterPlugin, MethodCallHandler,
       }
       result.success(targetUrl != null ? targetUrl.toString() : null);
     } else if ("fetchDeferredAppLink".equals(call.method)) {
-      AppLinkData.fetchDeferredAppLinkData(applicationContext, new AppLinkData.CompletionHandler() {
-        @Override
-        public void onDeferredAppLinkDataFetched(@Nullable final AppLinkData appLinkData) {
-          if (appLinkData != null) {
-            if (mainHandler != null) {
-              mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                  Map<String, Object> map = new HashMap<>();
-                  map.put("target_url", appLinkData.getTargetUri() != null ? appLinkData.getTargetUri().toString() : null);
-                  map.put("promo_code", appLinkData.getPromotionCode());
-                  channel.invokeMethod("handleDeferredAppLink", map);
-                  result.success(map);
-                }
-              });
-            }
-          } else {
-            if (mainHandler != null) {
-              mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                  result.success("");
-                }
-              });
-            }
-          }
-        }
-      });
+      result.success("");
     } else {
       result.notImplemented();
     }
